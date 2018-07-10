@@ -96,15 +96,9 @@
         };
 
         window.onload = function() {
-            var ctx = document.getElementById('canvas').getContext('2d');
-            window.myLine = new Chart(ctx, config);
+            //var ctx = document.getElementById('canvas').getContext('2d');
+            //window.myLine = new Chart(ctx, config);
         };
-
-        sayHello = function (parameters) {
-
-            alert($("#input1").val());
-                
-        }
 
         $("#btn2").click(function() {
             $.ajax({
@@ -112,11 +106,83 @@
                 type: 'POST',
                 success: function (data) {
                     if (data != null) {
-                        alert(data.name);
+                        createData(data.Labels, data.datas);
                     }
                 }
             });
         });
+
+        function createData(labels,datas) {
+            var chart = {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: getdata(datas)
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Chart.js Line Chart - Skip Points'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                    },
+                    hover: {
+                        mode: 'index'
+                    },
+                    scales: {
+                        //xAxes: [{
+                        //    display: true,
+                        //    scaleLabel: {
+                        //        display: true,
+                        //        labelString: 'Month'
+                        //    }
+                        //}],
+                        //yAxes: [{
+                        //    display: true,
+                        //    scaleLabel: {
+                        //        display: true,
+                        //        labelString: 'Value'
+                        //    },
+                        //}]
+
+                    }
+                }
+            };
+
+            var ctx = document.getElementById('canvas').getContext('2d');
+            window.myLine = new Chart(ctx, chart);
+        }
+
+        function getdata(datas) {
+            var data = [];
+            for (var i = 0; i < datas.length; i++) {
+                var site2 = {
+                    "label":   datas[i].Label,
+                    "borderColor": bg1(),
+                    "fill": false,
+                    "data": datas[i].Values};
+                data[i] = site2;
+            }
+
+            return data;
+        }
+
+        var getRandomColor = function () {
+            return (function (m, s, c) {
+                return (c ? arguments.callee(m, s, c - 1) : '#') +
+                  s[m.floor(m.random() * 16)]
+            })(Math, '0123456789abcdef', 5)
+        }
+
+        function bg1() {
+            var r = Math.floor(Math.random() * 256);
+            var g = Math.floor(Math.random() * 256);
+            var b = Math.floor(Math.random() * 256);
+            return "rgb(" + r + ',' + g + ',' + b + ")";
+        }
+
        
     </script>
 </body>
