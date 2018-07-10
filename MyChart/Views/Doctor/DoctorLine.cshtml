@@ -6,6 +6,7 @@
 <head>
     <script src="~/Scripts/Chart.bundle.min.js"></script>
     <script src="~/Scripts/utils.js"></script>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
     <style>
         canvas {
             -moz-user-select: none;
@@ -19,41 +20,48 @@
     <div style="width:100%;">
         <canvas id="canvas"></canvas>
     </div>
+    <div>
+        <button id="btn" onclick="sayHello();">sayHello</button>
+        <button id="btn2">sayHello2</button>
+        <input  id="input1" value="234"/>
+    </div>
     <script>
         var config = {
             type: 'line',
             data: {
                 labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Aguest', 'September'],
-                datasets: [{
-                    label: 'My First dataset',
-                    borderColor: window.chartColors.red,
-                    fill: false,
-                    // Skip a point in the middle
-                    data: [
-						10,
-						12,
-						9,
-						6,
-						13,
-						5,
-						10
-                    ],
+                datasets: [
+                    {
+                        label: 'My First dataset',
+                        borderColor: window.chartColors.red,
+                        fill: false,
+                        // Skip a point in the middle
+                        data: [
+                            10,
+                            12,
+                            9,
+                            6,
+                            13,
+                            5,
+                            10
+                        ],
 
-                }, {
-                    label: 'My Second dataset',
-                    borderColor: window.chartColors.blue,
-                    fill: false,
-                    // Skip first and last points
-                    data: [
-						7,
-						8,
-						9,
-						11,
-						10,
-						12,
-						13
-                    ],
-                }]
+                    }, {
+                        label: 'My Second dataset',
+                        borderColor: window.chartColors.blue,
+                        fill: false,
+                        // Skip first and last points
+                        data: [
+                            7,
+                            8,
+                            9,
+                            11,
+                            10,
+                            12,
+                            13
+                        ],
+                    }
+                ]
             },
             options: {
                 responsive: true,
@@ -82,14 +90,34 @@
                     //        labelString: 'Value'
                     //    },
                     //}]
+
                 }
             }
         };
 
-        window.onload = function () {
+        window.onload = function() {
             var ctx = document.getElementById('canvas').getContext('2d');
             window.myLine = new Chart(ctx, config);
         };
+
+        sayHello = function (parameters) {
+
+            alert($("#input1").val());
+                
+        }
+
+        $("#btn2").click(function() {
+            $.ajax({
+                url: "Doctor/sayHello",
+                type: 'POST',
+                success: function (data) {
+                    if (data != null) {
+                        alert(data.name);
+                    }
+                }
+            });
+        });
+       
     </script>
 </body>
 

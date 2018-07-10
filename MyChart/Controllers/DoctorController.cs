@@ -15,6 +15,18 @@ namespace MyChart.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+         public ActionResult sayHello()
+         {
+             MyClass my = new MyClass();
+             my.name = "张三";
+             return new JsonResult() { Data = my };
+        }
+        private class MyClass
+        {
+            public string name { get; set; }
+        }
         
         public ActionResult DoctorPie()
         {
