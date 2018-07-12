@@ -321,6 +321,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Doctor\DoctorPie.cshtml" />
     <Content Include="Views\Doctor\DoctorLine.cshtml" />
+    <Content Include="Views\Doctor\DoctorBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,8 +1,8 @@
 ﻿@{
-    ViewBag.Title = "DoctorLine";
+    ViewBag.Title = "DoctorBar";
 }
 
-<h2>DoctorLine</h2>
+<h2>DoctorBar</h2>
 <head>
     <script src="~/Scripts/Chart.bundle.min.js"></script>
     <script src="~/Scripts/utils.js"></script>
@@ -25,9 +25,10 @@
         <button id="btn2">sayHello2</button>
     </div>
     <script>
-        window.onload = function () {
+
+        window.onload = function() {
             $.ajax({
-                url: "Doctor/sayHello",
+                url: "Doctor/GetDoctorBar",
                 type: 'POST',
                 success: function (data) {
                     if (data != null) {
@@ -38,8 +39,9 @@
         };
 
         $("#btn").click(function () {
-            window.location.href = "Doctor/DoctorBar.cshtml";
+            window.location.href = "Doctor/DoctorLine.cshtml";
         });
+
         $("#btn2").click(function() {
             $.ajax({
                 url: "Doctor/sayHello",
@@ -52,9 +54,9 @@
             });
         });
 
-        function createData(labels,datas) { 
+        function createData(labels,datas) {
             var chart = {
-                type: 'line',
+                type: 'bar',
                 data: {
                     labels: labels,
                     datasets: getdata(datas)
@@ -84,6 +86,7 @@
                 var site2 = {
                     "label":   datas[i].Label,
                     "borderColor": bg1(),
+                    "backgroundColor": bg1(),
                     "fill": false,
                     "data": datas[i].Values};
                 data[i] = site2;
@@ -106,7 +109,7 @@
             return "rgb(" + r + ',' + g + ',' + b + ")";
         }
 
-       
+
     </script>
 </body>
 

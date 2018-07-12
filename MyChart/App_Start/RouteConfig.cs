@@ -16,7 +16,7 @@ namespace MyChart
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Doctor", action = "DoctorLine", id = UrlParameter.Optional }
+                defaults: new { controller = "Doctor", action = "DoctorBar", id = UrlParameter.Optional }
             );
         }
     }

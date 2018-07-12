@@ -35,6 +35,19 @@ namespace MyChart.Controllers
         {
             return View();
         }
+        public ActionResult DoctorBar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult GetDoctorBar()
+        {
+            IDoctorService service = new DoctorService();
+
+            var result = service.getUsers();
+            return new JsonResult() { Data = result };
+        }
 
     }
 }
