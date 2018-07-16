@@ -23,11 +23,11 @@ namespace MyChart.Controllers
         }
 
         [HttpPost]
-         public ActionResult sayHello()
+         public ActionResult sayHello(string keyValue)
         {
             IDoctorService service = new DoctorService();
 
-            var result = service.getUsers();
+            var result = service.getUsers(keyValue);
             return new JsonResult() { Data = result };
         }
         
@@ -41,11 +41,11 @@ namespace MyChart.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetDoctorBar()
+        public ActionResult GetDoctorBar(string keyValue)
         {
             IDoctorService service = new DoctorService();
 
-            var result = service.getUsers();
+            var result = service.getUsers(keyValue);
             return new JsonResult() { Data = result };
         }
 

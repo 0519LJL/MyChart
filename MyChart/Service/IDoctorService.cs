@@ -9,6 +9,6 @@ namespace MyChart.Service
 {
     public  abstract class IDoctorService
     {
-        public abstract ChartData getUsers();
+        public abstract ChartData getUsers(string keyValue);
     }
 }

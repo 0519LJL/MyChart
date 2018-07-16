@@ -2,53 +2,51 @@
     ViewBag.Title = "DoctorBar";
 }
 
-<h2>DoctorBar</h2>
 <head>
     <script src="~/Scripts/Chart.bundle.min.js"></script>
     <script src="~/Scripts/utils.js"></script>
     <script src="~/Scripts/jquery-1.8.2.min.js"></script>
     <style>
-        canvas {
-            -moz-user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-        }
+       canvas {
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
     </style>
 </head>
 
 <body>
-    <div style="width:100%;">
-        <canvas id="canvas"></canvas>
+    <div style="width: 100%">
+        <input id="keyValue"/>
+        <input type="button" id="serach" value="搜索">
     </div>
-    <div>
-        <button id="btn" onclick="sayHello();">sayHello</button>
-        <button id="btn2">sayHello2</button>
+    <div style="width:100%;">
+        <canvas id="canvas" height="550"></canvas>
     </div>
     <script>
 
-        window.onload = function() {
-            $.ajax({
-                url: "Doctor/GetDoctorBar",
-                type: 'POST',
-                success: function (data) {
-                    if (data != null) {
-                        createData(data.Labels, data.datas);
-                    }
-                }
-            });
-        };
+        //window.onload = function() {
+        //    $.ajax({
+        //        url: "Doctor/GetDoctorBar",
+        //        type: 'POST',
+        //        success: function (data) {
+        //            if (data != null) {
+        //                window.myBar = createData(data.Labels, data.datas);
+        //                window.myBar.update();
+        //            }
+        //        }
+        //    });
 
-        $("#btn").click(function () {
-            window.location.href = "Doctor/DoctorLine.cshtml";
-        });
+        //};
 
-        $("#btn2").click(function() {
+        $("#serach").click(function () {
             $.ajax({
                 url: "Doctor/sayHello",
                 type: 'POST',
+                data: { keyValue: $("#keyValue").val(), },
                 success: function (data) {
                     if (data != null) {
-                        createData(data.Labels, data.datas);
+                         createData(data.Labels, data.datas);
                     }
                 }
             });
@@ -65,7 +63,7 @@
                     responsive: true,
                     title: {
                         display: true,
-                        text: 'Chart.js Line Chart - Skip Points'
+                        text: '医生开药信息柱状图'
                     },
                     tooltips: {
                         mode: 'index',
@@ -77,7 +75,9 @@
             };
 
             var ctx = document.getElementById('canvas').getContext('2d');
-            window.myLine = new Chart(ctx, chart);
+            window.myBar = new Chart(ctx, chart);
+            $("#canvas").update();
+
         }
 
         function getdata(datas) {
@@ -98,7 +98,7 @@
         var getRandomColor = function () {
             return (function (m, s, c) {
                 return (c ? arguments.callee(m, s, c - 1) : '#') +
-                  s[m.floor(m.random() * 16)]
+                    s[m.floor(m.random() * 16)]
             })(Math, '0123456789abcdef', 5)
         }
 

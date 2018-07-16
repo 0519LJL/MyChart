@@ -196,7 +196,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Commom\ChartData.cs" />
     <Compile Include="Models\Commom\DataDetail.cs" />
-    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\GroupData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\IDoctorService.cs" />
     <Compile Include="Service\Impl\DoctorService.cs" />

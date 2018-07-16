@@ -9,6 +9,6 @@ namespace MyChart.Models
     {
         public string Label { get; set; }
 
-        public List<decimal> Values { get; set; }
+        public List<double> Values { get; set; }
     }
 }
