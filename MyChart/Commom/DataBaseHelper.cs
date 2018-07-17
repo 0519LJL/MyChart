@@ -10,10 +10,11 @@ namespace D3Download
 {
     public class DataBaseHelper
     {
+       static string connectStr = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
+
         public static DataTable ExecuterQuery(string commandSql)
         {
             DataTable dataTable = new DataTable();
-            string connectStr = ConfigurationManager.ConnectionStrings["connString"].ConnectionString;
             try
             {
                 using (SqlConnection oracleConnection =
@@ -38,10 +39,10 @@ namespace D3Download
             return dataTable;
         }
 
-        public static void Executer(string connectionString, string commandSql)
+        public static void Executer(string commandSql)
         {
             using (SqlConnection oracleConnection =
-            new SqlConnection(connectionString))
+            new SqlConnection(connectStr))
             {
                 oracleConnection.Open();
 
@@ -53,6 +54,29 @@ namespace D3Download
 
                 oracleConnection.Close();
             }
+        }
+
+        public static bool ExecuteNonQuery(string commandSql)
+        {
+            int count = 0;
+            using (SqlConnection oracleConnection =
+            new SqlConnection(connectStr))
+            {
+                oracleConnection.Open();
+
+                using (SqlCommand oracleCommand =
+                new SqlCommand(commandSql, oracleConnection))
+                {
+                    count = oracleCommand.ExecuteNonQuery();
+                }
+
+                oracleConnection.Close();
+            }
+            if (count > 0)
+            {
+                return true;
+            }
+            return false;
         }
     }  
 }

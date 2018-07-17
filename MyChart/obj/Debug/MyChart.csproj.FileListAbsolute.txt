@@ -104,4 +104,3 @@ D:\MyProject\MyChart\MyChart\bin\zh-Hans\System.Spatial.resources.dll
 D:\MyProject\MyChart\MyChart\bin\zh-Hant\System.Spatial.resources.dll
 D:\MyProject\MyChart\MyChart\obj\Debug\MyChart.dll
 D:\MyProject\MyChart\MyChart\obj\Debug\MyChart.pdb
-D:\MyProject\MyChart\MyChart\obj\Debug\MyChart.csprojResolveAssemblyReference.cache

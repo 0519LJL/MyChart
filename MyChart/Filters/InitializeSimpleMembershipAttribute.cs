@@ -5,6 +5,7 @@ using System.Threading;
 using System.Web.Mvc;
 using WebMatrix.WebData;
 using MyChart.Models;
+using System.Web.Mvc;
 
 namespace MyChart.Filters
 {
@@ -44,6 +45,34 @@ namespace MyChart.Filters
                 {
                     throw new InvalidOperationException("无法初始化 ASP.NET Simple Membership 数据库。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=256588", ex);
                 }
+            }
+        }
+    }
+
+
+    public sealed partial class CheckLoginAttribute : ActionFilterAttribute
+    {
+        //重写ActionFilterAttribute中的OnActionExecuted方法，表示在执行Action之前执行此方法
+        public override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            //判断Action方法的Control是否跳过登录验证
+            if (filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(SkipCheckLoginAttribute), false))
+            {
+                return;
+            }
+            //判断Action方法是否跳过登录验证
+            if (filterContext.ActionDescriptor.IsDefined(typeof(SkipCheckLoginAttribute), false))
+            {
+                return;
+            }
+            if (filterContext.HttpContext.Session["User"] == null)
+            {
+                //跳转方法1：
+                filterContext.HttpContext.Response.Redirect("/Login/Login");
+                //跳转方法2：
+                ViewResult view = new ViewResult();
+                //指定要返回的完整视图名称
+                view.ViewName = "~/View/Login/Login.cshtml";
             }
         }
     }
