@@ -10,8 +10,8 @@ namespace MyChart.Service.Impl
 {
     public class UserService : IUserService
     {
-        override 
-        public bool CheckExist(string name, string pwd)
+        override
+        public User CheckExist(string name, string pwd)
         {
             string sql = string.Format("SELECT * FROM dbo.[User] WHERE UserName ='{0}' AND PassWord ='{1}' AND IsUsed =1",name,pwd);
                     
@@ -23,10 +23,10 @@ namespace MyChart.Service.Impl
             }
             if (userList.Count > 0)
             {
-                return true;
+                return userList.First();
             }
 
-            return false;
+            return null;
         }
     }
 }

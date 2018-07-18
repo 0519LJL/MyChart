@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MyChart.Models;
 using MyChart.Service.Impl;
 
 namespace MyChart.Controllers
@@ -20,12 +21,17 @@ namespace MyChart.Controllers
         [HttpPost]
         public ActionResult Login(string name, string passWord)
         {
-            if(name=="Admin" && passWord == "123456")
+            if(string.IsNullOrEmpty(name) && string.IsNullOrEmpty(passWord))
             {
-                Session["User"] = name;
+                return new JsonResult() { Data = "请输入账号和密码" };
             }
 
-            bool dd = new UserService().CheckExist(name, passWord);
+            User currentUser = new UserService().CheckExist(name, passWord);
+
+            if (currentUser != null)
+            {
+                Session["CurrentUser"] = currentUser;
+            }
 
             return RedirectToAction("DoctorBar","Doctor");
         }
