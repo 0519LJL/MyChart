@@ -104,4 +104,10 @@ D:\MyProject\MyChart\MyChart\bin\zh-Hans\System.Spatial.resources.dll
 D:\MyProject\MyChart\MyChart\bin\zh-Hant\System.Spatial.resources.dll
 D:\MyProject\MyChart\MyChart\obj\Debug\MyChart.dll
 D:\MyProject\MyChart\MyChart\obj\Debug\MyChart.pdb
-D:\MyProject\MyChart\MyChart\obj\Debug\MyChart.csprojResolveAssemblyReference.cache
+D:\MyProject\MyChart\MyChart\bin\MyChart.XML
+D:\MyProject\MyChart\MyChart\bin\Swagger.Net.dll
+D:\MyProject\MyChart\MyChart\bin\Swashbuckle.Core.dll
+D:\MyProject\MyChart\MyChart\bin\WebActivator.dll
+D:\MyProject\MyChart\MyChart\bin\WebActivatorEx.dll
+D:\MyProject\MyChart\MyChart\bin\Swagger.Net.pdb
+D:\MyProject\MyChart\MyChart\bin\Swagger.Net.xml
